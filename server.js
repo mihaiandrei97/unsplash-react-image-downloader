@@ -1,7 +1,17 @@
+global.fetch = require('node-fetch');
+const config = require('universal-config');
+const Unsplash = require('unsplash-js').default;
+const toJson = require('unsplash-js').toJson;
 const express = require('express');
 const Fs = require('fs');
 const Path = require('path');
 const Axios = require('axios');
+
+const unsplash = new Unsplash({
+  accessKey: config.get('APPLICATION_ID'),
+  secret: config.get('SECRET'),
+  callbackUrl: config.get('CALLBACK_URL')
+});
 
 const app = express();
 
@@ -33,9 +43,14 @@ function download(image_url, image_name) {
     });
 }
 
+app.get('/api/photos', (req, res) => {
+  console.log(req.query);
+  unsplash.photos.listPhotos(req.query.start, req.query.count)
+    .then(toJson)
+    .then(data => res.json(data))
+});
 
-
-app.post('/download', (req, res) => {
+app.post('/api/download', (req, res) => {
   const image_url = req.body.image_url;
   const image_name = req.body.image_name;
   const downloadResponse = download(image_url, image_name);
@@ -48,4 +63,4 @@ app.post('/download', (req, res) => {
   });
 });
 
-app.listen(5000, () => console.log('Server Started...'));
+app.listen(5000, () => console.log('Server Started on port 5000'));
