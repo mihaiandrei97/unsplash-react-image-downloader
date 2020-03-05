@@ -44,8 +44,13 @@ function download(image_url, image_name) {
 }
 
 app.get('/api/photos', (req, res) => {
-  console.log(req.query);
   unsplash.photos.listPhotos(req.query.start, req.query.count)
+    .then(toJson)
+    .then(data => res.json(data))
+});
+
+app.get('/api/photos/search', (req, res) => {
+  unsplash.search.photos(req.query.searchValue, req.query.start, req.query.count)
     .then(toJson)
     .then(data => res.json(data))
 });
