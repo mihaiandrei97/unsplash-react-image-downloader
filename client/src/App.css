@@ -1,42 +1,171 @@
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	scroll-behavior: smooth;
 }
 
-.unsplash-downloader-wrapper {
-  border: 1px solid red;
+.unsplash-downloader-wrapper header {
+	background: url("./assets//background.png") ; 
+	position: relative;
 }
 
-.unsplash-downloader-loading {
-  position: fixed;
+.unsplash-downloader-wrapper header .unsplash-downloader-title-wrapper {
+	background-color: rgba(46, 62, 104, 0.4);
+	padding: 5px 20px;
+}
+.unsplash-downloader-wrapper header .unsplash-downloader-title-wrapper .unsplash-downloader-title {
+	color: #fff;
+	font-size: 18px;
+}
+
+.unsplash-downloader-wrapper header .unsplash-downloader-form {
+	position: absolute;
 	top: 50%;
 	left: 50%;
-	transform: translate(-50%,50%);
-	z-index: 999;
-	font-size: 24px;
-	color: #2E3E68;
+	transform: translate(-50%, -50%);
+	display: flex;
 }
 
-.unsplash-downloader-gallery-item {
-  padding: 3px;
-  margin: 20px auto;
+.unsplash-downloader-wrapper header .unsplash-downloader-form .unsplash-downloader-input {
+	width: 600px;
+	height: 40px;
+	padding: 10px;
+	border: 2px solid #2E3E68;
+}
+
+.unsplash-downloader-wrapper header .unsplash-downloader-form .unsplash-downloader-search {
+	margin: 0px;
+	padding: 0px;
+	display: inline-block;
+	width: 40px;
+	height: 40px;
+	position: relative;
+	background: #fff;
+	border: 2px solid #2E3E68;
+	cursor: pointer;
+}
+
+.unsplash-downloader-search:hover {
+	opacity: 0.95;
+}
+
+.unsplash-downloader-icon {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	
+}
+
+.unsplash-downloader-wrapper .unsplash-downloader-images {
+	width: 80%;
+	margin: 0 auto;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.unsplash-downloader-wrapper .unsplash-downloader-images .unsplash-downloader-gallery-item {
+	padding: 2px;
+	margin: 20px auto;
+	margin-right: 20px;
 	max-width: 250px;
 	max-height: 250px;
 	box-shadow: 0.3rem 0.4rem 0.4rem rgba(0, 0, 0, 0.4);
 	overflow: hidden;
+	position: relative;
 }
-/* Optional style for fetched images */
-.unsplash-downloader-images {
-  width: 80%;
-  margin: 0 auto;
-  display: flex;
-	flex-wrap: wrap;
-}
-.unsplash-downloader-single-photo {
-  display: block;
+
+.unsplash-downloader-wrapper .unsplash-downloader-images .unsplash-downloader-gallery-item .unsplash-downloader-single-photo {
+	display: block;
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
 	transition: transform 400ms ease-out;
+	cursor: pointer;
+}
+
+.unsplash-downloader-wrapper .unsplash-downloader-images .unsplash-downloader-gallery-item .unsplash-downloader-single-photo:hover {
+	transform: scale(1.15);
+}
+
+.unsplash-downloader-gallery-item:hover .unsplash-downloader-download {
+	visibility: visible;
+	opacity: 1;
+}
+
+.unsplash-downloader-download {
+	position: absolute;
+	color:#fff;
+	z-index: 999;	
+	top: 50%;	
+	left: 50%;
+	padding: 10px;
+	background-color:#68582E;
+	border-radius: 10px;
+	font-size: 14px;
+	transform: translate(-50%, -50%);
+	border: none;
+	cursor: pointer;
+	transition:	all 300ms;
+	visibility: hidden;
+	opacity: 0;
+	transition: visibility 0s, opacity 0.5s linear;
+}
+
+.unsplash-downloader-download:hover {
+	background-color: #2E3E68;
+}
+
+.unsplash-downloader-loading-wrapper {
+	background-color: #2E3E68;
+	padding: 30px;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	z-index: 9999;
+	transform: translate(-50%,-50%);
+	border-radius: 20px;
+}
+
+.unsplash-downloader-wrapper .unsplash-downloader-images .unsplash-downloader-gallery-item .unsplash-downloader-size {
+	position: absolute;
+	color: #fff;
+	z-index: 999;
+	top: 4px;
+	right: 4px;
+	padding: 10px;
+	background-color: rgba(46, 62, 104 );
+	border-radius: 10px;
+	font-size: 10px;
+	cursor: default;
+}
+
+.unsplash-downloader-scroll-to-top {
+	position: fixed;
+	bottom: 30px;
+	right: 30px;
+	transition: visibility 0s, opacity 0.5s linear;
+	padding: 10px;
+	background-color: #37474F;
+	border: none;
+	color: #fff;
+	cursor: pointer;
+}
+
+.unsplash-downloader-scroll-to-top:hover {
+	background-color: #455A64;
+}
+
+@media screen and (max-width: 768px) {
+	.unsplash-downloader-wrapper header .unsplash-downloader-form .unsplash-downloader-input {
+		width: auto;
+	}
+	header {
+		width: 150px;
+	}
+
+	.unsplash-downloader-wrapper header .unsplash-downloader-form {
+		top: 60%;
+	}
 }
